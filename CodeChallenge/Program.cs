@@ -24,8 +24,8 @@ namespace CodeChallenge
 
 3
 5 2 1
-5 2 1
-5 2 1
+5 2 4
+5 2 5
         */
         private static void SaveTheProisoner()
         {
@@ -45,22 +45,22 @@ namespace CodeChallenge
                 var sweets = arrMulti[i][1];
                 var startDistribution = arrMulti[i][2];
 
-                int poison = startDistribution + (sweets - 1);
+                int poison;
 
-                int rounds = sweets / prisioners;
-                if (rounds > 1)
+                if (sweets > prisioners)
                 {
-                    poison = poison - (rounds * prisioners);
+                    var dif = sweets % prisioners;
+                    sweets = dif == 0 ? prisioners : dif;
                 }
+
+                poison = startDistribution + sweets - 1;
 
                 if (poison > prisioners)
                 {
                     poison = poison - prisioners;
                 }
-                else if (poison == 0) {
-                    poison = startDistribution;
-                }
-                Console.Write(poison + (i < n-1 ? "\n" : ""));                
+                
+                Console.WriteLine(poison);
             }
         }
 
